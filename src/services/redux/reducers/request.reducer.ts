@@ -40,8 +40,8 @@ const initialState: RequestState = {
   method: API_METHODS[0],
   requestBody: '',
   authorization: '',
-  headers: [{ objectKey: 'x-cookie', value: 'none' }],
-  parameters: [{ objectKey: 'testing', value: 'true' }],
+  headers: [{ objectKey: '', value: '' }],
+  parameters: [{ objectKey: '', value: '' }],
   response: {} as ApiResponse,
   isProcessing: false,
 };

@@ -29,8 +29,8 @@ import {
   addHeaders,
   addParameters,
   setAuthorization,
-  setHeaders,
-  setParameters,
+  // setHeaders,
+  // setParameters,
   setProcessing,
   setRequestBody,
   setResponse,
@@ -150,32 +150,6 @@ export function MainPage(): ReactElement {
     dispatch(setRequestBody(value));
   };
 
-  const onKeyChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    index: number,
-    type: number,
-  ) => {
-    if (type === 0) {
-      dispatch(setParameters({ value: event.target.value, index, type: 0 }));
-      return;
-    }
-
-    dispatch(setHeaders({ value: event.target.value, index, type: 0 }));
-  };
-
-  const onValueChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    index: number,
-    type: number,
-  ) => {
-    if (type === 0) {
-      dispatch(setParameters({ value: event.target.value, index, type: 1 }));
-      return;
-    }
-
-    dispatch(setHeaders({ value: event.target.value, index, type: 1 }));
-  };
-
   const addTextField = (type: MultiTextFieldTypeEnum) => {
     switch (type) {
       case MultiTextFieldTypeEnum.HEADER:
@@ -192,8 +166,6 @@ export function MainPage(): ReactElement {
   const onAuthorizationChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setAuthorization(event.target.value));
   };
-
-  const handlers = { onKeyChange, onValueChange };
 
   return (
     <Box style={{ padding: '24px', height: '60vh' }}>
@@ -239,13 +211,11 @@ export function MainPage(): ReactElement {
             Add Parameter
           </Button>
           <Spacing spacing={2} variant="top" />
-          {parameters.map((param: StringObject, index: number) => (
+          {parameters.map((_obj: StringObject, index: number) => (
             <KeyValuePairInputField
-              key={`parameters-form${index}`}
+              key="parameters-form"
               index={index}
               type={MultiTextFieldTypeEnum.PARAMETER}
-              {...param}
-              {...handlers}
             />
           ))}
         </TabPanel>
@@ -254,12 +224,10 @@ export function MainPage(): ReactElement {
             Add Header
           </Button>
           <Spacing spacing={2} variant="top" />
-          {headers.map((param: StringObject, index: number) => (
+          {headers.map((_obj: StringObject, index: number) => (
             <KeyValuePairInputField
               index={index}
-              key={`header-form${index}`}
-              {...param}
-              {...handlers}
+              key="header-form"
               type={MultiTextFieldTypeEnum.HEADER}
             />
           ))}
