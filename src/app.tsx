@@ -12,8 +12,6 @@ export function App(): ReactElement {
   const theme = createTheme({
     palette: {
       mode: 'dark',
-      primary: { main: '#293462' },
-      secondary: { main: '#D61C4E' },
     },
   });
 
